@@ -1,51 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { profileDB } from "./profileData";
 
-const user1 =
-{
-  name: 'David Beckham',
-  img: 'data:image/jpeg;base64,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',
+var newProfile = 
+  {
+  name: 'Ronaldo',
+  avatar: 'https://i.imgur.com/LWMwN1k.jpg',
+  image: 'https://i.imgur.com/LWMwN1k.jpg',
   tree: 1024,
   badges: 'Rookie',
   routes: [
-    'Tan Lap',
-    'Vanh Dai DHQG',
-    'Nguyen Du'
+
   ],
   friends: [],
-  records: [{date: "Sat Apr 23 2022", distance: 5.12}, {date: "Sat Apr 23 2022", distance: 3.42}]
+  records: [{ date: "Sat Apr 23 2022", distance: 5.12 }, { date: "Sat Apr 23 2022", distance: 3.42 }]
 }
 
-const user2 =
-{
-  name: 'Taylor Swift',
-  img: 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU1NDc3MTEyODE0MzE0NTcy/taylor-swift-attends-the-2016-vanity-fair-oscar-party-hosted-by-graydon-carter-at-wallis-annenberg-center-for-the-performing-arts-on-february-28-2016-in-beverly-hills-california-photo-by-anthony-harve.jpg',
-  tree: 1024,
-  badges: 'Rookie',
-  routes: [
-    'Tan Lap',
-    'Vanh Dai DHQG',
-    'Nguyen Du'
-  ],
-  friends: [],
-  records: [{date: "Sat Apr 23 2022", distance: 5.12}, {date: "Sat Apr 23 2022", distance: 3.42}]
-}
 
 
 const profileSlice = createSlice({
   name: 'profile',
-  initialState: user1,
+  initialState: {...profileDB[0]},
   reducers: {
     toggle(state){
-      if(state.name === user1.name){
-        state = user2
+      console.log(profileDB)
+
+      if(state.name === profileDB[0].name){
+        state = profileDB[1]
       }
       else{
-        state = user1
+        state = profileDB[0]
+      }
+      return state
+    },
+    updateFriend(state, action){
+      console.log('MA thanh cong roi ' + profileDB.length)
+      const loveName = action.payload
+      state.friends.push(loveName)
+      
+      for(let i = 0; i < profileDB.length; i++){
+        if(profileDB[i].name === state.name){
+          profileDB[i].friends = [loveName]
+
+        }
       }
       return state
     }
   }
 })
-export const {toggle} = profileSlice.actions
+export const {toggle, updateFriend} = profileSlice.actions
 
 export default profileSlice.reducer

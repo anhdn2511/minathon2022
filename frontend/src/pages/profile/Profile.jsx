@@ -16,7 +16,7 @@ function Profile(){
       <Row className="d-flex justify-content-center">
         <Col className="d-flex justify-content-center">
           <div className="mx-auto">
-            <img className="avatar img-fluid" src={profile.img}/>
+            <img className="avatar img-fluid" src={profile.avatar}/>
           </div>
         </Col>
       </Row>
@@ -24,15 +24,15 @@ function Profile(){
         <p className="fs-4 m-0 text-primary fw-bold text-center">{profile.name}</p>
       </Row>
       <Row className="justify-content-center">
-        <Col className="col-5">
+        <Col className="col-6">
           <Button className="btn-primary w-100" onClick={() => dispatch(toggle())}>Switch Account</Button>
         </Col>
-        <Col className="col-5">
-          <Button className="btn-primary w-100">Edit Profilet</Button>
+        <Col className="col-6">
+          <Button className="btn-primary w-100">Edit Profile</Button>
         </Col>
       </Row>
-      <Row className="py-2">
-        <h3 className="border-bottom border-2 text-primary">Account</h3>
+      <Row className="py-3">
+        <h3 className="border-bottom border-2 text-primary pb-2">Account</h3>
         <Row>
           <Col className="col-auto px-0"><AiFillHeart className="text-primary"/></Col>
           <Col><p className="">Favourite</p></Col>
@@ -60,10 +60,10 @@ function Profile(){
         </Row>
       </Row>
       <Row className="py-2">
-        <h3 className="border-bottom border-2 text-primary">Prefrences</h3>
+        <h3 className="border-bottom border-2 text-primary pb-2">Prefrences</h3>
       </Row>
       <Row className="py-2">
-        <h3 className="border-bottom border-2 text-primary">Support</h3>
+        <h3 className="border-bottom border-2 text-primary pb-2">Support</h3>
       </Row>
     </Container>
   )
