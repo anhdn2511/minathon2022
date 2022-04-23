@@ -7,9 +7,12 @@ import BottomBar from "./components/Bottombar";
 import styled from "styled-components";
 
 import Running from "./pages/running/Running";
-import HomePage from "./pages/Homepage";
-import Swiper from "./pages/swiper/Swiper";
 import EventInfo from "./pages/EventInfo";
+import HomePage from "./pages/Homepage";
+import Profile from "./pages/profile/Profile";
+import Swiper from "./pages/swiper/Swiper";
+import CreateEvent from "./pages/event/CreateEvent";
+import Chat from "./pages/chat";
 
 const Main = styled.div`
   transition: 0.3s;
@@ -24,10 +27,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/running" element={<Running />} />
-          <Route path="/matching" element={<Swiper />} />
+          <Route path="/account" element={<Profile />} />
           <Route path="/event" element={<EventInfo />} />
+          <Route path="/explore" element={<Swiper />} />
+          <Route path="/createevent" element={<CreateEvent />} />
+          <Route path="/message" element={<Chat />} />
         </Routes>
-        <div style={{ height: 100 }}></div>
       </Main>
     </div>
   );

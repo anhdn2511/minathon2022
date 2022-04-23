@@ -1,51 +1,40 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
-import TinderCard from "react-tinder-card";
-import "./Cards.css";
+import React, { useState, useMemo, useRef} from 'react'
+import TinderCard from 'react-tinder-card'
+import './Cards.css'
+import { Modal, Button } from 'react-bootstrap'
+import { profileDB } from '../../redux/profileData'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateFriend } from '../../redux/profileSlice'
 
-const profiles = [
-  {
-    name: "Cu Do Thanh Nhan",
-    account: "cudothanhnhan1",
-    tree: 1024,
-    badges: "Rookie",
-    routes: ["Tan Lap", "Vanh Dai DHQG", "Nguyen Du"],
-    age: 25,
-    description: "Hello I am Nhan",
-    image: "https://i.imgur.com/4pxFQpD.png",
-  },
-  {
-    name: "Nguyen Quang Anh",
-    account: "cudothanhnhan2",
-    tree: 1024,
-    badges: "Rookie",
-    routes: ["Tan Lap", "Vanh Dai DHQG", "Nguyen Du"],
-    age: 25,
-    description: "Hello I am Nhan",
-    image: "https://i.imgur.com/LWMwN1k.jpg",
-  },
-  {
-    name: "Nguyen Huu Phuc",
-    account: "cudothanhnhan3",
-    tree: 1024,
-    badges: "Rookie",
-    routes: ["Tan Lap", "Vanh Dai DHQG", "Nguyen Du"],
-    age: 25,
-    description: "Hello I am Nhan",
-    image: "https://i.imgur.com/K0rR3dq.png",
-  },
-];
 
-function Advanced() {
-  const [currentIndex, setCurrentIndex] = useState(profiles.length - 1);
-  const [lastDirection, setLastDirection] = useState();
+function Swiper () {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.profile)
+  const findRecommend = () => {
+    return profileDB.filter(ele => ele.name !== profile.name
+                  && !profile.friends.includes(ele.name)
+                  && ele.routes.some(route => profile.routes.includes(route)))
+  }
+  const suggestProfile = findRecommend()
+  console.log(profileDB)
+  const [accepted, setAccepted] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
+  const handleCloseModal = () => setShowModal(false)
+  const handleShowModal = () => setShowModal(true)
+
+  const [currentIndex, setCurrentIndex] = useState(suggestProfile.length - 1)
+  const [lastDirection, setLastDirection] = useState()
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
-    () =>
-      Array(profiles.length)
+    () =>{
+      return Array(findRecommend())
         .fill(0)
-        .map((i) => React.createRef()),
+        .map((i) => React.createRef())
+    }
+,
     []
   );
 
@@ -54,21 +43,26 @@ function Advanced() {
     currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < profiles.length - 1;
+  const canGoBack = currentIndex < suggestProfile.length - 1;
 
-  const canSwipe = currentIndex >= 0;
+  //const canSwipe = currentIndex >= 0
 
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
-    setLastDirection(direction);
-    updateCurrentIndex(index - 1);
-  };
+    setLastDirection(direction)
+    updateCurrentIndex(index - 1)
+
+    if(direction === 'right' && profile.name === 'Taylor Swift'){
+      handleShowModal()
+    }
+    // else if(direction === 'right'){
+    //   dispatch(updateFriend(suggestProfile[index].name))
+    // }
+  }
 
   const showMessage = (direction) => {
-    if (direction === "left") {
-      alert("Completed");
-    } else {
-      alert("Failed");
+    if (direction === 'right') {
+      // handleShowModal()
     }
   };
 
@@ -90,9 +84,23 @@ function Advanced() {
   };
 
   return (
-    <div className="container row justify-content-center align-items-center rootSwipe">
-      <div className="cardContainerSwipe col-md-10">
-        {profiles.map((profile, index) => (
+    <div className='container row justify-content-center align-items-center rootSwipe'>
+      <Modal show={showModal} onHide={handleCloseModal} style={{width: 400}}>
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">Hooray!</Modal.Title>
+        </Modal.Header>
+          <Modal.Body>
+            <p>David Beckham also likes you</p>
+          </Modal.Body>
+          <Modal.Footer>
+              <Button onClick={handleCloseModal} className='bg-success'>Chat now</Button>
+              <Button onClick={handleCloseModal} className='bg-primary'>Invite him to run</Button>
+          </Modal.Footer>
+
+      </Modal>
+
+      <div className='cardContainerSwipe col-md-10'>
+        {suggestProfile.map((profile, index) => (
           <TinderCard
             ref={childRefs[index]}
             className="swipe"
@@ -101,42 +109,24 @@ function Advanced() {
             onCardLeftScreen={() => outOfFrame(profile.name, index)}
           >
             <div
-              style={{
-                backgroundImage: "url(" + profile.image + ")",
-                justifyContent: "flex-end",
-                alignItems: "flex-start",
-              }}
-              className="cardSwipe"
+              style={{ backgroundImage: 'url(' + profile.image + ')'}}
+              className='cardSwipe d-flex flex-column-reverse align-items-start'
             >
-              <p className="h3 cardNameh3 text-secondary">
-                {profile.name}, {profile.age}
-              </p>
-              <p className="h6 cardNameh6 text-secondary">
-                Đã trồng được {profile.tree} cây
-              </p>
+              <p className = "h6 ms-3 text-secondary">Đã trồng được {profile.tree} cây</p>
+              <p className = "h3 ms-3 text-secondary">{profile.name}, {profile.age}</p>
             </div>
           </TinderCard>
         ))}
       </div>
       <div className="buttonSwipe col-md-10 justify-content-center">
         {/* <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Swipe left!</button> */}
-        <button
-          className="btn btn-success rounded-circle buttonOfSwipe"
-          style={{ backgroundColor: !canGoBack && "#c9bebd" }}
-          onClick={() => goBack()}
-        >
-          Undo swipe!
-        </button>
+        <button type="button" className="btn btn-danger rounded-circle buttonOfSwipe" onClick={() => showMessage('left')}>Deny</button>
+        {/* <button className="btn btn-primary rounded-circle buttonOfSwipe" style={{ backgroundColor: !canGoBack && '#c9bebd' }} onClick={() => goBack()}>Undo swipe!</button> */}
         {/* <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button> */}
-        <button
-          type="button"
-          className="btn btn-success rounded-circle buttonOfSwipe"
-        >
-          Accept
-        </button>
+        <button type="button" className="btn btn-success rounded-circle buttonOfSwipe" onClick={() => showMessage('right')}>Accept</button>
       </div>
     </div>
   );
 }
 
-export default Advanced;
+export default Swiper

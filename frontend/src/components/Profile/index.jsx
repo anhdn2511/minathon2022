@@ -21,11 +21,11 @@ export default function Profile() {
             <Col>
               <div className="text-dark">
                 <h3 className="fw-bold text-muted">Level</h3>
-                <p className="fw-bold text-success">Rookie</p>
+                <p className="fw-bold text-dark">Rookie</p>
                 <h3 className="fw-bold text-muted">Total hour</h3>
-                <p className="fw-bold text-success">240</p>
+                <p className="fw-bold text-dark">240</p>
                 <h3 className="fw-bold text-muted">Something</h3>
-                <p className="fw-bold text-success">Rookie</p>
+                <p className="fw-bold text-dark">Rookie</p>
               </div>
             </Col>
           </Row>
@@ -35,7 +35,7 @@ export default function Profile() {
               <ImageButton
                 imageUrl={`https://img.freepik.com/free-vector/young-people-giving-high-five-illustrations-set_23-2148373642.jpg?size=338&ext=jpg&ga=GA1.2.958362103.1650726980`}
                 title="Find Runmate"
-                linkTo="/matching"
+                linkTo="/explore"
               />
             </Col>
             <Col>
