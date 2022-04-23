@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Running from "./pages/running/Running";
 import HomePage from "./pages/Homepage";
 import Swiper from "./pages/swiper/Swiper";
+import EventInfo from "./pages/EventInfo";
 
 const Main = styled.div`
   transition: 0.3s;
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/running" element={<Running />} />
           <Route path="/matching" element={<Swiper />} />
+          <Route path="/event" element={<EventInfo />} />
         </Routes>
         <div style={{ height: 100 }}></div>
       </Main>

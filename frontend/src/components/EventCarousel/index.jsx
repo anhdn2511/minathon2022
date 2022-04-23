@@ -70,6 +70,7 @@ export default function EventCarousel() {
                 imageUrl={imageUrl}
                 title={title}
                 content={getDateString(date)}
+                linkTo="/event"
               />
             </Col>
           ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Stack } from "react-bootstrap";
 import {
   CircularProgressbarWithChildren,
@@ -7,25 +7,31 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import { BsFillTreeFill } from "react-icons/bs";
 
+const ICON_COLOR = "#184A2C";
+
 export default function Badge({ percent, title, content }) {
-  percent = 60;
-  title = "20";
-  content = "Tree count";
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+
+  useEffect(() => {
+    if (currentPercentage !== percent) {
+      setCurrentPercentage(percent);
+    }
+  }, [currentPercentage]);
 
   return (
-    <Stack className="align-items-center">
+    <Stack className="align-items-center" style={{ textAlign: "center" }}>
       <CircularProgressbarWithChildren
-        value={percent}
+        value={currentPercentage}
         styles={buildStyles({
-          pathTransitionDuration: 0.5,
-          pathColor: `rgba(62, 152, 199)`,
+          pathTransitionDuration: 1.2,
+          pathColor: ICON_COLOR,
           trailColor: "#d6d6d6",
         })}
       >
-        <BsFillTreeFill size="2em" className="text-muted" />
+        <BsFillTreeFill size="2em" style={{ color: ICON_COLOR }} />
       </CircularProgressbarWithChildren>
       <h1 className="text-primary">{title}</h1>
-      <h5 className="text-muted">{content}</h5>
+      <h6 className="text-muted">{content}</h6>
     </Stack>
   );
 }

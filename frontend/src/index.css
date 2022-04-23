@@ -31,6 +31,15 @@ code {
 .vh-10 {
   height: 10vh !important;
 }
+
+.vh-15 {
+  height: 15vh !important;
+}
+
+.vh-20 {
+  height: 20vh !important;
+}
+
 .vh-25 {
   height: 25vh !important;
 }
