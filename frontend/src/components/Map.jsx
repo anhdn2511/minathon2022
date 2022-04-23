@@ -23,15 +23,15 @@ function MapView({ pos }) {
 }
 
 export default function Map() {
-
-  const [route, setRoute] = useState([routeSession[0]])
   const [checkpoint, setCheckpoint] = useState(0)
   const dispatch = useDispatch()
 
   useEffect(
     () => {
+
       const intervalId = setInterval(
         () => {
+          
           const newCheckpoint = checkpoint < routeSession.length - 1 ? checkpoint + 1 : routeSession.length - 1
           setCheckpoint(newCheckpoint)
 
@@ -39,14 +39,14 @@ export default function Map() {
           dispatch(
             updateState({
               distance: diff(route[route.length - 1], routeSession[checkpoint]),
-              duration: TIME
+              duration: TIME,
+              route: [...route, routeSession[checkpoint]]
             })
           )
-          const newRoute = [...route, routeSession[checkpoint]]
-          setRoute(newRoute)
         }, TIME * 1000
       )
-
+      
+      
       return () => clearInterval(intervalId);
     }, [checkpoint, route]
   )
