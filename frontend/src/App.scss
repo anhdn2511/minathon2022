@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 
 $theme-colors: (
-    "primary": #2196F3,
-    "info": tomato,
-    "danger": teal
+    "primary": #184A2C,
+    "secondary": #EBFDF2,
+    "success": #76B536,
+    "dark": #000000,
+    "danger": #FF542C
 );
 
 /* import bootstrap to set changes */
