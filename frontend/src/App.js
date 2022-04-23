@@ -15,8 +15,9 @@ import Chat from "./pages/chat";
 
 const Main = styled.div`
   transition: 0.3s;
-  marginbottom: 100;
-`;
+  marginbottom: 100;`
+
+
 
 function App() {
   return (
@@ -30,8 +31,9 @@ function App() {
           <Route path="/explore" element={<Swiper />} />
           <Route path="/createevent" element={<CreateEvent />} />
           <Route path="/message" element={<Chat/>} />
+          <Route path='/running' element={<Running />} />
         </Routes>
-        {/* <div style={{ height: 100 }}></div> */}
+
       </Main>
     </div>
   );

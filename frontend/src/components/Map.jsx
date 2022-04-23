@@ -1,30 +1,71 @@
-import React from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useEffect } from 'react'
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, useMap, Marker, Polyline } from 'react-leaflet'
+import { routeSession } from '../redux/fake/runningSession'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateState } from '../redux/runningSlice'
+
+const TIME = 1
+
+const limeOptions = { color: '#76b536' }
+
+const diff = (last, curr) => {
+  const DEGREE_TO_KM = 111.0
+  const x = curr[0] - last[0]
+  const y = curr[1] - last[1]
+  return Math.sqrt(x * x + y * y) * DEGREE_TO_KM
+}
+
+
+function MapView({ pos }) {
+  const map = useMap()
+  map.setView({ lat: pos[0], lng: pos[1] })
+}
 
 export default function Map() {
-  const position = [51.505, -0.09]
 
-  useEffect(() => {
-    if ('geolocation' in navigator) {
-      console.log("Available");
-    } else {
-      console.log("Not Available");
-    }
-  })
+  const [route, setRoute] = useState([routeSession[0]])
+  const [checkpoint, setCheckpoint] = useState(0)
+  const dispatch = useDispatch()
+
+  useEffect(
+    () => {
+      const intervalId = setInterval(
+        () => {
+          const newCheckpoint = checkpoint < routeSession.length - 1 ? checkpoint + 1 : routeSession.length - 1
+          setCheckpoint(newCheckpoint)
+
+          // update running state
+          dispatch(
+            updateState({
+              distance: diff(route[route.length - 1], routeSession[checkpoint]),
+              duration: TIME
+            })
+          )
+          const newRoute = [...route, routeSession[checkpoint]]
+          setRoute(newRoute)
+        }, TIME * 1000
+      )
+
+      return () => clearInterval(intervalId);
+    }, [checkpoint, route]
+  )
+
+  // useCallback((e) => console.log(e.latlng))
+
 
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={100} scrollWheelZoom={true}>
+    < MapContainer center={route[route.length - 1]} zoom={100} scrollWheelZoom={true} >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
+      <Polyline pathOptions={limeOptions} positions={route} />
+      <Marker position={route[route.length - 1]}>
+
       </Marker>
-    </MapContainer>
+      <MapView pos={route[route.length - 1]} />
+    </MapContainer >
   )
 }
 
