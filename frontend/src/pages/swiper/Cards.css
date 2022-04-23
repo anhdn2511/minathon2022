@@ -1,0 +1,116 @@
+#root {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    /* background: linear-gradient(#fff, #999); */
+    background: #EBFDF2;
+  }
+  
+  #root>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .app>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* .row {
+    flex-direction: row !important;
+  }
+  
+  .row>* {
+    margin: 5px;
+  } */
+  
+  
+  .swipe {
+    position: absolute;
+  }
+  
+  .cardContainer {
+    width: 100vw;
+    max-width: 330px;
+    height: 700px;
+  }
+  
+  .card {
+    background-color: #fff;
+    width: 100vw;
+    max-width: 330px;
+    height: 700px;
+    box-shadow: 0px 0px 60px 0px rgba(0,0,0,0.30);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .cardContent {
+    width: 100%;
+    height: 100%;
+  }
+
+  
+  /* .card .cardNameh3 {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    color: #fff;
+  }
+
+  .card .cardNameh6 {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    color: #fff;
+  } */
+  
+  .infoText {
+    width: 100%;
+    height: 28px;
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    animation-name: popup;
+    animation-duration: 800ms;
+  }
+  
+  .buttonSwipe {
+    margin: 20px;
+    display: flex;
+  }
+  
+  .buttonSwipe button {
+    flex-shrink: 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    transition: 200ms;
+    margin: 0 10px;
+    font-weight: bolder;
+    width: 80px;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
+  }
+  
+  .buttons button:hover {
+    transform: scale(1.05);
+  }
+  
+  @keyframes popup {
+    0%   { transform: scale(1,1) }
+    10%  { transform: scale(1.1,1.1) }
+    30%  { transform: scale(.9,.9) }
+    50%  { transform: scale(1,1) }
+    57%  { transform: scale(1,1) }
+    64%  { transform: scale(1,1) }
+    100% { transform: scale(1,1) }
+  }
