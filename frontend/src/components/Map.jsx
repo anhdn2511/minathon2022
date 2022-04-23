@@ -1,8 +1,18 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 
 export default function Map() {
   const position = [51.505, -0.09]
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      console.log("Available");
+    } else {
+      console.log("Not Available");
+    }
+  })
+
   return (
     <MapContainer center={[51.505, -0.09]} zoom={100} scrollWheelZoom={true}>
       <TileLayer
