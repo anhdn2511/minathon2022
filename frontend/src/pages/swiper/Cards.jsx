@@ -52,13 +52,12 @@ function Swiper () {
     setLastDirection(direction)
     updateCurrentIndex(index - 1)
 
-    if(direction === 'right' && suggestProfile[index].friends.includes(profile.name)){
-      console.log('huhu')
+    if(direction === 'right' && profile.name === 'Taylor Swift'){
       handleShowModal()
     }
-    else if(direction === 'right'){
-      dispatch(updateFriend(suggestProfile[index].name))
-    }
+    // else if(direction === 'right'){
+    //   dispatch(updateFriend(suggestProfile[index].name))
+    // }
   }
 
   const showMessage = (direction) => {
@@ -87,15 +86,15 @@ function Swiper () {
   return (
     <div className='container row justify-content-center align-items-center rootSwipe'>
       <Modal show={showModal} onHide={handleCloseModal} style={{width: 400}}>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Confirm Matching</Modal.Title>
+        <Modal.Header>
+          <Modal.Title id="contained-modal-title-vcenter">Hooray!</Modal.Title>
         </Modal.Header>
           <Modal.Body>
-            {accepted ? 'Accepted' : 'Wait for that person to accept'}
+            <p>David Beckham also likes you</p>
           </Modal.Body>
           <Modal.Footer>
-              <Button onClick={handleCloseModal} className='bg-success'>View profile</Button>
-              <Button onClick={handleCloseModal} className='bg-primary'>Create running invitation</Button>
+              <Button onClick={handleCloseModal} className='bg-success'>Chat now</Button>
+              <Button onClick={handleCloseModal} className='bg-primary'>Invite him to run</Button>
           </Modal.Footer>
 
       </Modal>

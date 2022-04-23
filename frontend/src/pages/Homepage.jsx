@@ -27,6 +27,7 @@ function HomePage() {
           <History />
         </Stack>
       </div>
+      <div style={{height: '100px'}}></div>
     </div>
   );
 }

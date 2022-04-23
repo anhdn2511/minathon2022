@@ -33,7 +33,7 @@ const profileSlice = createSlice({
       return state
     },
     updateFriend(state, action){
-      console.log('MA thanh cong roi ' + profileDB.length)
+
       const loveName = action.payload
       state.friends.push(loveName)
       
