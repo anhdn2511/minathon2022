@@ -103,8 +103,8 @@ function Advanced () {
   }
 
   return (
-    <div className='container row justify-content-center align-items-center'>
-      <div className='cardContainer col-md-10'>
+    <div className='container row justify-content-center align-items-center rootSwipe'>
+      <div className='cardContainerSwipe col-md-10'>
         {profiles.map((profile, index) => (
           <TinderCard
             ref={childRefs[index]}
@@ -115,7 +115,7 @@ function Advanced () {
           >
             <div
               style={{ backgroundImage: 'url(' + profile.image + ')' , justifyContent: 'flex-end', alignItems: 'flex-start'}}
-              className='card'
+              className='cardSwipe'
             >
               <p className = "h3 cardNameh3 text-secondary">{profile.name}, {profile.age}</p>
               <p className = "h6 cardNameh6 text-secondary">Đã trồng được {profile.tree} cây</p>
@@ -125,9 +125,9 @@ function Advanced () {
       </div>
       <div className='buttonSwipe col-md-10 justify-content-center'>
         {/* <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('left')}>Swipe left!</button> */}
-        <button className="btn btn-success rounded-circle" style={{ backgroundColor: !canGoBack && '#c9bebd' }} onClick={() => goBack()}>Undo swipe!</button>
+        <button className="btn btn-success rounded-circle buttonOfSwipe" style={{ backgroundColor: !canGoBack && '#c9bebd' }} onClick={() => goBack()}>Undo swipe!</button>
         {/* <button style={{ backgroundColor: !canSwipe && '#c3c4d3' }} onClick={() => swipe('right')}>Swipe right!</button> */}
-        <button type="button" className="btn btn-success rounded-circle">Accept</button>
+        <button type="button" className="btn btn-success rounded-circle buttonOfSwipe">Accept</button>
       </div>
     </div>
   )

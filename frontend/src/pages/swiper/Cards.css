@@ -1,4 +1,4 @@
-#root {
+.rootSwipe {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -7,20 +7,6 @@
     overflow: hidden;
     /* background: linear-gradient(#fff, #999); */
     background: #EBFDF2;
-  }
-  
-  #root>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .app>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
   
   /* .row {
@@ -36,13 +22,13 @@
     position: absolute;
   }
   
-  .cardContainer {
+  .cardContainerSwipe {
     width: 100vw;
     max-width: 330px;
     height: 700px;
   }
   
-  .card {
+  .cardSwipe {
     background-color: #fff;
     width: 100vw;
     max-width: 330px;
@@ -53,7 +39,7 @@
     background-position: center;
   }
   
-  .cardContent {
+  .cardContentSwipe {
     width: 100%;
     height: 100%;
   }
@@ -88,7 +74,7 @@
     display: flex;
   }
   
-  .buttonSwipe button {
+  .buttonOfSwipe {
     flex-shrink: 0;
     padding: 10px;
     border-radius: 5px;
@@ -101,7 +87,7 @@
     box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
   }
   
-  .buttons button:hover {
+  .buttonOfSwipe:hover {
     transform: scale(1.05);
   }
   
