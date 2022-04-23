@@ -1,0 +1,7 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.tabSize": 2,
+    "docker.languageserver.formatter.ignoreMultilineInstructions": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+}
