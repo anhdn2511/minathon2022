@@ -1,23 +1,32 @@
 import "./App.scss";
 import "./App.css";
-import { Button, Stack } from "react-bootstrap";
+import "./index.css";
 
-import Map from "./components/Map";
-import Badge from "./components/Badge";
-import Profile from "./pages/Profile";
+import { Routes, Route } from "react-router-dom";
+import BottomBar from "./components/Bottombar";
+import styled from "styled-components";
+
+import Running from "./pages/running/Running";
+import HomePage from "./pages/Homepage";
+import Swiper from "./pages/swiper/Swiper";
+
+const Main = styled.div`
+  transition: 0.3s;
+  marginbottom: 100;
+`;
+
 function App() {
-  return <Profile />;
-
   return (
-    <div className="bg-primary">
-      <Button variant="primary">Primary</Button>{" "}
-      <Button variant="secondary">Secondary</Button>{" "}
-      <Button variant="success">Success</Button>{" "}
-      <Button variant="warning">Warning</Button>{" "}
-      <Button variant="danger">Danger</Button>{" "}
-      <Button variant="info">Info</Button>{" "}
-      <Button variant="light">Light</Button>{" "}
-      <Button variant="dark">Dark</Button> <Button variant="link">Link</Button>
+    <div>
+      <BottomBar />
+      <Main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/running" element={<Running />} />
+          <Route path="/matching" element={<Swiper />} />
+        </Routes>
+        <div style={{ height: 100 }}></div>
+      </Main>
     </div>
   );
 }

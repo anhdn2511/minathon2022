@@ -3,9 +3,10 @@ import { Container, Row, Col, Stack } from "react-bootstrap";
 import EventCard from "./EventCard";
 import { useState } from "react";
 
+import { mockEventsData as events } from "./data";
 const ITEMSPERPAGE = 2;
 
-export default function EventCarousel({ events }) {
+export default function EventCarousel() {
   const [currentPage, setCurrentPage] = useState({
     index: 0,
     items: events.slice(0, 2),
@@ -34,8 +35,8 @@ export default function EventCarousel({ events }) {
   };
 
   return (
-    <Container className="bg-light">
-      <Container>
+    <>
+      <Container style={{ padding: 0 }}>
         <Row>
           <Col justifyContent="space-between">
             <Stack
@@ -45,7 +46,7 @@ export default function EventCarousel({ events }) {
                 marginBottom: 5,
               }}
             >
-              <h4>Upcoming Events</h4>
+              <h3>Upcoming Events</h3>
               <div>
                 <FaChevronLeft
                   size="1em"
@@ -74,7 +75,7 @@ export default function EventCarousel({ events }) {
           ))}
         </Row>
       </Container>
-    </Container>
+    </>
   );
 }
 
