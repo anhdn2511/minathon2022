@@ -8,6 +8,7 @@ import styled from "styled-components"
 
 import Running from './pages/running/Running';
 import HomePage from './pages/Homepage';
+import Profile from './pages/profile/Profile';
 
 const Main = styled.div`
   transition: 0.3s;
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage/>}/>
           <Route path="/running" element={<Running />} />
+          <Route path="/account" element={<Profile />} />
         </Routes>
         <div style={{height: 100}}>
         </div>
