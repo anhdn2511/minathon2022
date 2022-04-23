@@ -1,21 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { routeSession } from "./fake/runningSession";
+
+function round(num) {
+  return Math.round(num * 1000) / 1000;
+}
 
 const runningSlice = createSlice({
   name: 'running',
   initialState: {
-    route: [routeSession[0]],
-    distance: 0,
+    distance: 0.0,
     duration: 0,
     pace: 0,
     burned: 0
   },
   reducers: {
-    changeState: (state, action) => {
-      return [...state, action.payload]
+    updateState: (state, action) => {
+      const newState = {
+        distance: round(state.distance) + round(action.payload.distance),
+        duration: state.duration + action.payload.duration,
+        pace: state.duration / state.distance,
+        burned: 11.5 * state.distance / (state.duration / 60) * 68 / 200
+      }
+      return newState
     }
   }
 })
 
-export const { changeState } = runningSlice.actions
+export const { updateState } = runningSlice.actions
 export default runningSlice.reducer

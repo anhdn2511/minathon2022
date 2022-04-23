@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
 import { Button, Card, Col, Row } from "react-bootstrap";
 import Map from "../../components/Map";
@@ -7,7 +7,8 @@ import Map from "../../components/Map";
 
 export default function Running() {
 
-  const [running, setRunning] = useState(useSelector(state => state.running))
+  const running = useSelector(state => state.running)
+
 
   return <div>
     <Card className='fixed-bottom'>
@@ -33,10 +34,10 @@ export default function Running() {
             <Col>Pace - min/km</Col>
             <Col>Burned - Calories</Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col>{running.pace}</Col>
             <Col>{running.burned}</Col>
-          </Row>
+          </Row> */}
         </div>
         <div className="d-grid gap-2">
           <Button variant="primary" size="lg">Stop</Button>
