@@ -1,5 +1,6 @@
 import React from "react";
-import { Row, Col, Container, Stack, Image } from "react-bootstrap";
+import { Row, Col, Container, Stack, Image, Button} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Badge from "../../components/Badge";
 import UserCard from "../../components/UserCard";
 
@@ -17,7 +18,16 @@ export default function EventInfo() {
         <RoundedContainer borderRadius={15}>
           <Row style={{ alignItems: "center", margin: 10 }}>
             <Col>
-              <Image src={imageUrl} alt="company" className="w-100" rounded />
+              <Row>
+                <Image src={imageUrl} alt="company" className="w-100" rounded />
+              </Row>
+              <Row className="mt-3">   
+                <Link to="/running">
+                  <Button size="sm" variant="primary" className="w-100">
+                    Join now
+                  </Button>
+                </Link>
+              </Row> 
             </Col>
             <Col>
               <div className="text-dark">

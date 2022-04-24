@@ -18,11 +18,6 @@ export default function EventCard({ imageUrl, title, content, linkTo }) {
           <strong className="text-dark">{title}</strong>
         </Link>
         <i>{content}</i>
-        <div className="d-flex justify-content-center p-2">
-          <Button size="sm" variant="outline-primary">
-            Join now
-          </Button>
-        </div>
       </Stack>
     </div>
   );

@@ -5,6 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 import { profileDB } from "../../redux/profileData";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFriend } from "../../redux/profileSlice";
+import { Link } from "react-router-dom";
 
 function Swiper() {
   const dispatch = useDispatch();
@@ -91,12 +92,16 @@ function Swiper() {
           <p>David Beckham also likes you</p>
         </Modal.Body>
         <Modal.Footer>
+          <Link to="/message" >
           <Button onClick={handleCloseModal} className="bg-success">
             Chat now
           </Button>
+          </Link>
+          <Link to="/running" >
           <Button onClick={handleCloseModal} className="bg-primary">
             Invite him to run
           </Button>
+          </Link>
         </Modal.Footer>
       </Modal>
 
