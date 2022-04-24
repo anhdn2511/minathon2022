@@ -2,8 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { useEffect } from 'react'
 import { MapContainer, TileLayer, useMap, Marker, Polyline } from 'react-leaflet'
 import { routeSession } from '../redux/fake/runningSession'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateState } from '../redux/runningSlice'
+
 
 const TIME = 1
 
@@ -22,33 +21,34 @@ function MapView({ pos }) {
   map.setView({ lat: pos[0], lng: pos[1] })
 }
 
-export default function Map() {
 
+export default function Map({ data, setData }) {
   const [route, setRoute] = useState([routeSession[0]])
-  const [checkpoint, setCheckpoint] = useState(0)
-  const dispatch = useDispatch()
+
 
   useEffect(
     () => {
+
       const intervalId = setInterval(
         () => {
-          const newCheckpoint = checkpoint < routeSession.length - 1 ? checkpoint + 1 : routeSession.length - 1
-          setCheckpoint(newCheckpoint)
 
-          // update running state
-          dispatch(
-            updateState({
-              distance: diff(route[route.length - 1], routeSession[checkpoint]),
-              duration: TIME
-            })
-          )
-          const newRoute = [...route, routeSession[checkpoint]]
-          setRoute(newRoute)
+          const newCheckpoint = data.checkpoint < routeSession.length - 1 ? data.checkpoint + 1 : routeSession.length - 1
+          const newDistance = data.distance + diff(route[route.length - 1], routeSession[data.checkpoint])
+          const newDuration = data.duration + TIME
+          setData({
+            checkpoint: newCheckpoint,
+            distance: newDistance,
+            duration: newDuration,
+            pace: newDistance === 0 ? 0 : newDuration / (60 * newDistance),
+            burned: 11.5 * newDistance / (newDuration / 3600) * 68 / 200
+          })
+
+          setRoute([...route, routeSession[data.checkpoint]])
+
         }, TIME * 1000
       )
-
       return () => clearInterval(intervalId);
-    }, [checkpoint, route]
+    }, [data]
   )
 
   // useCallback((e) => console.log(e.latlng))

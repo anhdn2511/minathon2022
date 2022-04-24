@@ -15,7 +15,7 @@ export default function BottomBar() {
 
   const content = [
     {
-      icon: <AiFillHome size={"2em"} />,
+      icon: <AiFillHome size={"2.5em"} />,
       title: "",
       path: "/",
     },
