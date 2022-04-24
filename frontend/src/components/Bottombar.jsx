@@ -1,13 +1,13 @@
 import React from "react"
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import {AiFillHome} from 'react-icons/ai'
-import {MdMessage, MdOutlineExplore} from 'react-icons/md'
+import { AiFillHome } from 'react-icons/ai'
+import { MdMessage, MdOutlineExplore } from 'react-icons/md'
 
-import {BsFillPersonFill} from 'react-icons/bs'
-import {FiActivity} from 'react-icons/fi'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { FiActivity } from 'react-icons/fi'
 import { useDispatch, useSelector } from "react-redux"
 import { change } from "../redux/menuSlice"
-import {Link, Navigate} from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 
 
@@ -20,7 +20,7 @@ export default function BottomBar() {
 
   const content = [
     {
-      icon: <AiFillHome size={'2em'}/>,
+      icon: <AiFillHome size={'2em'} />,
       title: '',
       path: '/',
     },
@@ -51,12 +51,12 @@ export default function BottomBar() {
       <Container className="d-flex justify-content-evenly">
         {
           content.map((el, key) =>
-            <Link to={el.path}>
+            <Link to={el.path} key={key}>
               <Navbar.Text
-                onClick={() => {dispatch(change(el.path))}}
-                className={myMenu.path === el.path ? "text-primary" : "text-black-50 opacity-25"} 
-                key={key} as="a">
-                  {el.icon}
+                onClick={() => { dispatch(change(el.path)) }}
+                className={myMenu.path === el.path ? "text-primary" : "text-black-50 opacity-25"}
+                key={key} >
+                {el.icon}
               </Navbar.Text>
             </Link>
           )
