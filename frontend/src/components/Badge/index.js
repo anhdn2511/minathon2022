@@ -28,7 +28,7 @@ export default function Badge({ percent, title, content }) {
           trailColor: "#d6d6d6",
         })}
       >
-        <BsFillTreeFill size="2em" style={{ color: ICON_COLOR }} />
+        <BsFillTreeFill size="2.5em" style={{ color: ICON_COLOR }} />
       </CircularProgressbarWithChildren>
       <h1 className="text-primary">{title}</h1>
       <h6 className="text-muted">{content}</h6>

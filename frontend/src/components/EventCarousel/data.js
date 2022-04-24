@@ -1,13 +1,13 @@
 export const mockEventsData = [
   {
     id: 1,
-    imageUrl: `https://picsum.photos/seed/runner-water/150/90`,
+    imageUrl: `https://picsum.photos/seed/runner-/150/90`,
     title: "Longbien Marathon 2022 1st Ekiden",
     date: new Date(),
   },
   {
     id: 2,
-    imageUrl: `https://picsum.photos/seed/runner-lake/150/90`,
+    imageUrl: `https://picsum.photos/seed/long-bien/150/90`,
     title: "Conquer Puerto Rico Virtual",
     date: new Date(),
   },

@@ -6,7 +6,7 @@ import ImageButton from "../ImageButton";
 export default function Profile() {
   const percent = 60;
   const title = "6";
-  const content = "4 more tree to the next level";
+  const content = "4 more trees to the next level";
 
   return (
     <>
@@ -20,17 +20,17 @@ export default function Profile() {
             </Col>
             <Col>
               <div className="text-dark">
-                <h3 className="fw-bold text-muted">Level</h3>
-                <p className="fw-bold text-dark">Rookie</p>
-                <h3 className="fw-bold text-muted">Total hour</h3>
-                <p className="fw-bold text-dark">240</p>
-                <h3 className="fw-bold text-muted">Something</h3>
-                <p className="fw-bold text-dark">Rookie</p>
+                <h5 className="fw-bold text-muted">Level</h5>
+                <h3 className="fw-bold text-dark">Rookie</h3>
+                <h5 className="fw-bold text-muted">Total hours</h5>
+                <h3 className="fw-bold text-dark">240</h3>
+                <h5 className="fw-bold text-muted">Connections</h5>
+                <h3 className="fw-bold text-dark">12</h3>
               </div>
             </Col>
           </Row>
 
-          <Row>
+          <Row alignItems="center">
             <Col>
               <ImageButton
                 imageUrl={`https://img.freepik.com/free-vector/young-people-giving-high-five-illustrations-set_23-2148373642.jpg?size=338&ext=jpg&ga=GA1.2.958362103.1650726980`}

@@ -43,18 +43,19 @@ export default function EventCarousel() {
               direction="horizontal"
               style={{
                 justifyContent: "space-between",
-                marginBottom: 5,
+                marginBottom: 10,
               }}
             >
               <h3>Upcoming Events</h3>
               <div>
                 <FaChevronLeft
-                  size="1em"
+                  size="1.5em"
                   className="text-muted"
                   onClick={onGotoPrev}
                 />
+                {"  "}
                 <FaChevronRight
-                  size="1em"
+                  size="1.5em"
                   className="text-muted"
                   onClick={onGotoNext}
                 />

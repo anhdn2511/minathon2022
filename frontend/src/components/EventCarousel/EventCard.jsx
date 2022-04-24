@@ -6,9 +6,6 @@ export default function EventCard({ imageUrl, title, content, linkTo }) {
   return (
     <div
       className="bg-light shadow"
-      onClick={() => {
-        console.log(`Goto card ${title}`);
-      }}
       style={{
         overflow: "hidden",
         textAlign: "center",
