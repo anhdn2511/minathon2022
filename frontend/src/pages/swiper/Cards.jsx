@@ -110,15 +110,13 @@ function Swiper() {
             onCardLeftScreen={() => outOfFrame(profile.name, index)}
           >
             <div
-              style={{ backgroundImage: "url(" + profile.image + ")" }}
-              className="cardSwipe d-flex flex-column align-items-start"
+              style={{ backgroundImage: "url(" + profile.image + ")"}}
+              className="cardSwipe d-flex flex-column-reverse align-items-start"
             >
               <div className="text-dark m-2 text-align-flex-start">
-                <h3 className="fw-bold text-dark">{profile.name}</h3>
-                <h5 className="fw-bold text-muted">Tree planted</h5>
-                <h3 className="fw-bold text-dark">{profile.tree}</h3>
-                <h5 className="fw-bold text-muted">Connections</h5>
-                <h3 className="fw-bold text-dark">12</h3>
+                <h3 className="fw-bold text-secondary">{profile.name}</h3>
+                <h5 className="fw-bold text-secondary">Tree planted: {profile.tree}</h5>
+                <h5 className="fw-bold text-secondary">Connections: 12</h5>
               </div>
             </div>
           </TinderCard>
